@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loader from 'react-loaders';
 import { Link } from 'react-router-dom';
-import LogoE from '../../assets/images/N_logo.png';
+import LogoE from '../../assets/images/New.png';
 import AnimatedLetters from '../AnimatedLetters';
 import './index.scss';
 import Logo from './Logo';
