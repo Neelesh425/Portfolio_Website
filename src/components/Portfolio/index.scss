@@ -1,0 +1,203 @@
+.portfolio-container {
+  min-height: 100vh;
+  height: 100%;
+  background: linear-gradient(135deg, #001f3f 0%, #003d5c 50%, #006494 100%);
+  padding: 60px 80px;
+  padding-left: 140px; // Account for sidebar
+  overflow-y: auto;
+  
+  @media (max-width: 1024px) {
+    padding: 40px 40px;
+    padding-left: 100px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+    padding-left: 80px;
+  }
+}
+
+.portfolio-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.portfolio-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60%;
+    height: 4px;
+    background: #ffd700;
+    border-radius: 2px;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.project-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 380px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    
+    .project-image-container {
+      transform: scale(1.05);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    height: 340px;
+  }
+}
+
+.project-image-container {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.project-placeholder-icon {
+  font-size: 5rem;
+  opacity: 0.3;
+  
+  @media (max-width: 768px) {
+    font-size: 4rem;
+  }
+}
+
+.project-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.project-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+  
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
+}
+
+.project-technologies {
+  font-size: 0.9rem;
+  color: #cccccc;
+  font-weight: 400;
+  
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  animation: fadeIn 0.3s ease;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.project-description {
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 30px;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+}
+
+.view-project-btn {
+  padding: 12px 30px;
+  background: #ffd700;
+  color: #001f3f;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #ffed4e;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+}
