@@ -19,19 +19,19 @@ const About = () => {
 
     const skillsData = {
         languages: [
-            { name: 'Java', experience: '4 years',  color: '#f89820' },
-            { name: 'Python', experience: '3 years',  color: '#ffd43b' },
-            { name: 'JavaScript', experience: '3 years',  color: '#f7df1e' },
-            { name: 'TypeScript', experience: '2 years',  color: '#3178c6' },
-            { name: 'SQL', experience: '1.5 years',  color: '#00758f' },
-            { name: 'C/C++', experience: '1 years', color: '#659ad2' },
-            { name: 'Go', experience: '1 years',  color: '#00add8' },
+            { name: 'Java', experience: '4 years', level: 100, color: '#f89820' },
+            { name: 'Python', experience: '3 years', level: 80, color: '#ffd43b' },
+            { name: 'JavaScript', experience: '3 years', level: 80, color: '#f7df1e' },
+            { name: 'TypeScript', experience: '1 years', level: 30, color: '#3178c6' },
+            { name: 'SQL', experience: '2.5 years', level: 70, color: '#00758f' },
+            { name: 'C', experience: '2 years', level: 60, color: '#659ad2' },
+            { name: 'Go', experience: '1 years', level: 30, color: '#00add8' },
         ],
         frameworks: [
-            { name: 'React', experience: '3 years', level: 90, color: '#61dafb' },
-            { name: 'Spring Boot', experience: '2.5 years', level: 85, color: '#6db33f' },
-            { name: 'Node.js', experience: '2 years', level: 82, color: '#339933' },
-            { name: 'Express', experience: '2 years', level: 80, color: '#000000' },
+            { name: 'React', experience: '2 years', level: 70, color: '#61dafb' },
+            { name: 'Spring Boot', experience: '0.5 years', level: 15, color: '#6db33f' },
+            { name: 'Node.js', experience: '1 years', level: 82, color: '#339933' },
+            { name: 'Express', experience: '1 years', level: 80, color: '#000000' },
             { name: 'Next.js', experience: '1.5 years', level: 78, color: '#ffffff' },
             { name: 'Django', experience: '1 years', level: 70, color: '#092e20' },
             { name: 'Flask', experience: '1 years', level: 72, color: '#000000' },
@@ -103,7 +103,7 @@ const About = () => {
                                                 <span className="skill-name">{skill.name}</span>
                                                 <span className="skill-experience">{skill.experience}</span>
                                             </div>
-                                            <span className="skill-percentage">{skill.level}%</span>
+                                            <span className="skill-percentage"></span>
                                         </div>
                                         <div className="skill-bar">
                                             <div 

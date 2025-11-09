@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.scss';
+import AnimatedLetters from '../AnimatedLetters';
+
 
 const Portfolio = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
+ 
+
+
+  
+  
 
   const projects = [
     {
@@ -82,7 +89,7 @@ const Portfolio = () => {
   return (
     <div className="portfolio-container">
       <div className="portfolio-content">
-        <h1 className="portfolio-title">My Portfolio</h1>
+        <h1 className='portfolio-title'>My Portfolio</h1>
         
         <div className="projects-grid">
           {projects.map((project) => (
