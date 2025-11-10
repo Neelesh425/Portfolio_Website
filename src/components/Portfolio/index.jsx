@@ -54,7 +54,7 @@ const Portfolio = () => {
       technologies: ['NextJS', 'Prisma', 'Spring Boot'],
       icon: '🛒',
       gradient: 'linear-gradient(135deg, #e8e8e8 0%, #ffffff 100%)',
-      link: '#',
+      link: 'https://github.com/Neelesh425/Nft_marketPlace_apik',
       image : nftImg,
     },
     {
@@ -85,7 +85,7 @@ const Portfolio = () => {
       icon: '🔧',
       image: Lost_and_foundImg,
       gradient: 'linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%)',
-      link: '#'
+      link: 'https://github.com/Neelesh425/Lost_and_found_apk'
     },
     {
       id: 6,
