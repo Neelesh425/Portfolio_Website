@@ -3,10 +3,14 @@ import './index.scss';
 import AnimatedLetters from '../AnimatedLetters';
 import PageLoader from '../PageLoader'; 
 
-// Import your project images here
-// import cogniQuestImg from '../../assets/images/projects/cogni-quest.jpg';
-// import emporImg from '../../assets/images/projects/empor.jpg';
-// etc...
+// Images
+import cogniQuestImg from './project_img/memory_card.png';
+import chatbotImg from './project_img/chatbot.png';
+import gluco_guardImg from './project_img/gluco_guard.png';
+import nftImg from './project_img/nft.png';
+import Lost_and_foundImg from './project_img/Lost_and_found.png';
+import weatherImg from './project_img/weather.png';
+
 
 const Portfolio = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -36,75 +40,64 @@ const Portfolio = () => {
     {
       id: 1,
       title: 'Cogni_Quest',
-      description: 'A comprehensive exam scheduling system with automated conflict detection',
-      technologies: ['ReactJS', 'PostgreSQL', 'Spring Boot'],
+      description: 'A game to sharpen and hone your Memory',
+      technologies: ['ReactJS', 'Scss', 'Spring Boot'],
       icon: '📚',
       gradient: 'linear-gradient(135deg, #4a1a1a 0%, #7a2c2c 100%)',
-      link: '#'
+      link: 'https://neelesh425.github.io/newMemoryCardGame',
+      image : cogniQuestImg,
     },
     {
       id: 2,
-      title: 'Empor',
-      description: 'E-commerce platform with real-time inventory management',
+      title: 'Virtual Art Gallery with NFT Integration',
+      description: "View Place for your Nft's ",
       technologies: ['NextJS', 'Prisma', 'Spring Boot'],
       icon: '🛒',
       gradient: 'linear-gradient(135deg, #e8e8e8 0%, #ffffff 100%)',
-      link: '#'
+      link: '#',
+      image : nftImg,
     },
     {
       id: 3,
-      title: 'PL Match Predictor',
-      description: 'Machine learning model to predict Premier League match outcomes',
-      technologies: ['Python', 'Sci-kit Learn', 'Pandas'],
+      title: 'Gluco_Guard',
+      description: 'Get Warking signs and prevent Diaebeties',
+      technologies: ['Python', 'Sci-kit Learn', 'Pandas', 'Flask'],
       icon: '⚽',
+      image: gluco_guardImg,
       gradient: 'linear-gradient(135deg, #38003c 0%, #5a0058 100%)',
-      link: '#'
+      link: 'https://github.com/Neelesh425/diabeties_prediction_new_apk'
     },
     {
       id: 4,
-      title: 'PremierZone',
-      description: 'Fantasy football analytics and team management platform',
-      technologies: ['ReactJS', 'PostgreSQL', 'Spring Boot'],
+      title: 'Weather_How',
+      description: 'Get Real time Info on weather anywhere',
+      technologies: ['Phython', 'Flask', 'Vercel'],
       icon: '🏆',
+      image: weatherImg,
       gradient: 'linear-gradient(135deg, #1e4d3c 0%, #2d7a5f 100%)',
-      link: '#'
+      link: 'https://github.com/Neelesh425/newWeatherPrediction'
     },
     {
       id: 5,
-      title: 'Laravel Project',
-      description: 'Full-stack web application built with Laravel framework',
-      technologies: ['Laravel', 'MySQL', 'Vue.js'],
+      title: 'Lost_&_Found',
+      description: 'Full-stack web application built for lost Items',
+      technologies: ['html/scss/Js', 'MySQL', 'Vue.js'],
       icon: '🔧',
+      image: Lost_and_foundImg,
       gradient: 'linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%)',
       link: '#'
     },
     {
       id: 6,
-      title: 'Social Platform',
-      description: 'Real-time social networking application',
-      technologies: ['React', 'Node.js', 'MongoDB'],
+      title: 'Dec_Chatbot',
+      description: 'Real-time chatBot for Dumka Engineering College',
+      technologies: ['html/css/Js', 'Phython', 'Flask', 'SqLAlchemy'],
       icon: '👥',
+      image: chatbotImg,
       gradient: 'linear-gradient(135deg, #001a33 0%, #003366 100%)',
-      link: '#'
+      link: 'https://github.com/Neelesh425/DumkaEngineeringCollege_chatbot'
     },
-    {
-      id: 7,
-      title: 'Chat Application',
-      description: 'Real-time messaging app with emoji support',
-      technologies: ['React', 'Socket.io', 'Express'],
-      icon: '💬',
-      gradient: 'linear-gradient(135deg, #b3d9ff 0%, #e6f2ff 100%)',
-      link: '#'
-    },
-    {
-      id: 8,
-      title: 'Game Project',
-      description: 'Interactive browser-based game with leaderboard',
-      technologies: ['JavaScript', 'Canvas API', 'Firebase'],
-      icon: '🎮',
-      gradient: 'linear-gradient(135deg, #2c1810 0%, #4a2818 100%)',
-      link: '#'
-    }
+
   ];
 
   const handleProjectClick = (link) => {
@@ -138,11 +131,20 @@ const Portfolio = () => {
               onMouseLeave={() => setHoveredProject(null)}
               onClick={() => handleProjectClick(project.link)}
             >
+
               <div className="project-image-container">
-                <div className="project-placeholder-icon">
-                  <span>{project.icon}</span>
-                </div>
-              </div>
+  {project.image ? (
+    <img 
+      src={project.image} 
+      alt={project.title}
+      className="project-image"
+    />
+  ) : (
+    <div className="project-placeholder-icon">
+      <span>{project.icon}</span>
+    </div>
+  )}
+</div>
               
               <div className="project-info">
                 <h3 className="project-title">{project.title}</h3>

@@ -52,9 +52,9 @@ const About = () => {
     };
 
     const tabs = [
-        { id: 'languages', label: 'Languages', icon: '💻' },
-        { id: 'frameworks', label: 'Frameworks', icon: '🚀' },
-        { id: 'tools', label: 'Tools', icon: '🛠️' }
+        { id: 'languages', label: 'Languages', icon: '' },
+        { id: 'frameworks', label: 'Frameworks / Technologies', icon: '' },
+        { id: 'tools', label: 'Tools', icon: '' }
     ];
 
     return (

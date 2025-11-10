@@ -29,49 +29,35 @@ const WorkExperience = () => {
     const experiences = [
         {
             id: 1,
-            company: 'TRC Consulting, Inc.',
-            position: 'Full Stack Developer',
-            duration: 'May - September 2024',
+            company: 'Lawazia Tech ',
+            position: 'Generative_Ai intern',
+            duration: 'june - July 2024',
             location: 'Remote',
             color: '#e63946',
             responsibilities: [
-                'Developed responsive web applications using React and Node.js',
-                'Implemented RESTful APIs and integrated with PostgreSQL database',
-                'Collaborated with design team to create intuitive user interfaces',
-                'Optimized application performance resulting in 40% faster load times'
+                'Implemented asynchronous I/O pipelines in Kotlin and Python to prefetch templates and assets, boosting content-load throughput by 15%.',
+                'Integrated a lightweight caching layer using SQLite and in-memory stores, cutting redundant network calls by 25% and improving offline writing capabilities',
+                
+                
             ],
-            technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker']
+            technologies: ['React', 'Python', 'PostgreSQL', 'AWS', 'Docker']
         },
         {
             id: 2,
-            company: 'Tech Innovations Ltd.',
+            company: 'Ardent Infotech Ltd.',
             position: 'Software Engineer Intern',
-            duration: 'May - September 2023',
+            duration: 'June - August 2025',
             location: 'Hybrid',
             color: '#f77f00',
             responsibilities: [
-                'Built and maintained microservices using Spring Boot',
-                'Designed and implemented database schemas for new features',
-                'Participated in agile ceremonies and sprint planning',
-                'Wrote comprehensive unit tests achieving 85% code coverage'
+                'Developed SweetForecast, an AI-driven diabetes prediction app at Ardent Computech, integrating Random Forest models on patient data to achieve 85% risk-assessment accuracy.',
+                'Implemented Flask-based interactive risk simulations in SweetForecast, enabling what-if scenarios (e.g., +10 kg weight) to visualize real-time diabetes risk changes.',
+                'Enhanced SweetForecast’s UI with dynamic graphs and 3D models to display risk trends (age, weight), deliver AI-generated advice, personalized recommendations, and real-time insights'
+                
             ],
-            technologies: ['Java', 'Spring Boot', 'MySQL', 'Redis', 'Kafka']
+            technologies: ['Python', 'Spring Boot', 'MySQL', 'Redis', 'Kafka']
         },
-        {
-            id: 3,
-            company: 'Digital Solutions Co.',
-            position: 'Frontend Developer',
-            duration: 'January - April 2023',
-            location: 'On-site',
-            color: '#06a77d',
-            responsibilities: [
-                'Created reusable React components following best practices',
-                'Implemented state management using Redux Toolkit',
-                'Worked with UX designers to ensure pixel-perfect designs',
-                'Improved accessibility standards across the application'
-            ],
-            technologies: ['React', 'Redux', 'TypeScript', 'Tailwind', 'Figma']
-        }
+        
     ];
 
     const toggleCard = (id) => {
@@ -101,7 +87,7 @@ const WorkExperience = () => {
                                     className={`experience-card ${cardsVisible ? 'card-visible' : ''}`}
                                     style={{ 
                                         //animationDelay: `${index * 0.2}s`,
-                                        transitionDelay: `${index * 0.3}s`
+                                        transitionDelay: `${index * 0.4}s`
                                     }}
                                     onClick={() => toggleCard(exp.id)}
                                 >
