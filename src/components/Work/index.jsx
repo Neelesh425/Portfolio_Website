@@ -6,14 +6,22 @@ import './index.scss';
 const WorkExperience = () => {
     const [letterClass, setLetterClass] = useState('text-animate');
     const [expandedCard, setExpandedCard] = useState(null);
+    const [cardsVisible, setCardsVisible] = useState(false);
 
     useEffect(() => {
-        const timerId = setTimeout(() => {
+        // Trigger card animations
+        const cardTimer = setTimeout(() => {
+            setCardsVisible(true);
+        }, 500);
+
+        // Animate title letters
+        const letterTimer = setTimeout(() => {
             setLetterClass('text-animate-hover');
-        }, 3000);
+        }, 4000);
 
         return () => {
-            clearTimeout(timerId);
+            clearTimeout(cardTimer);
+            clearTimeout(letterTimer);
         };
     }, []);
 
@@ -69,6 +77,8 @@ const WorkExperience = () => {
         setExpandedCard(expandedCard === id ? null : id);
     };
 
+    const titleLetters = ['W', 'o', 'r', 'k', ' ', 'E', 'x', 'p', 'e', 'r', 'i', 'e', 'n', 'c', 'e'];
+
     return (
         <>
             <div className="container work-experience-page">
@@ -77,20 +87,23 @@ const WorkExperience = () => {
                         <h1>
                             <AnimatedLetters 
                                 letterClass={letterClass}
-                                strArray={['W', 'o', 'r', 'k', ' ', 'E', 'x', 'p', 'e', 'r', 'i', 'e', 'n', 'c', 'e']}
+                                strArray={titleLetters}
                                 idx={15}
                             />
                         </h1>
 
                         <div className="experience-cards">
-                            {experiences.map((exp, idx) => (
+                            {experiences.map((exp, index) => (
                                 <div 
                                     key={exp.id} 
-                                    className={`experience-card ${expandedCard === exp.id ? 'expanded' : ''}`}
-                                    style={{ animationDelay: `${idx * 0.15}s` }}
+                                    className={`experience-card ${cardsVisible ? 'card-visible' : ''}`}
+                                    style={{ 
+                                        animationDelay: `${index * 0.2}s`,
+                                        transitionDelay: `${index * 0.2}s`
+                                    }}
                                     onClick={() => toggleCard(exp.id)}
                                 >
-                                    <div className="card-indicator" style={{ background: exp.color }}></div>
+                                    <div className="card-indicator" style={{ backgroundColor: exp.color }}></div>
                                     
                                     <div className="card-header">
                                         <div className="card-main-info">
@@ -100,12 +113,18 @@ const WorkExperience = () => {
                                             <p className="position-title">{exp.position}</p>
                                             <span className="duration">{exp.duration}</span>
                                         </div>
-                                        <button className="expand-btn">
+                                        <button 
+                                            className="expand-btn"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                toggleCard(exp.id);
+                                            }}
+                                        >
                                             {expandedCard === exp.id ? '−' : '+'}
                                         </button>
                                     </div>
 
-                                    <div className="card-expanded-content">
+                                    <div className={`card-expanded-content ${expandedCard === exp.id ? 'show' : ''}`}>
                                         <div className="location-tag">
                                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -127,7 +146,11 @@ const WorkExperience = () => {
                                             <h4>Technologies:</h4>
                                             <div className="tech-badges">
                                                 {exp.technologies.map((tech, techIdx) => (
-                                                    <span key={techIdx} className="tech-badge" style={{ borderColor: exp.color }}>
+                                                    <span 
+                                                        key={techIdx} 
+                                                        className="tech-badge" 
+                                                        style={{ borderColor: exp.color }}
+                                                    >
                                                         {tech}
                                                     </span>
                                                 ))}
@@ -140,7 +163,7 @@ const WorkExperience = () => {
                     </div>
 
                     <div className="right-section">
-                        <div className="illustration-container">
+                        <div className={`illustration-container ${cardsVisible ? 'illustration-visible' : ''}`}>
                             <div className="briefcase">
                                 <div className="briefcase-body"></div>
                                 <div className="briefcase-handle"></div>

@@ -2,14 +2,34 @@ import React, { useState, useEffect } from 'react';
 import './index.scss';
 import AnimatedLetters from '../AnimatedLetters';
 
+// Import your project images here
+// import cogniQuestImg from '../../assets/images/projects/cogni-quest.jpg';
+// import emporImg from '../../assets/images/projects/empor.jpg';
+// etc...
 
 const Portfolio = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
- 
+  const [letterClass, setLetterClass] = useState('text-animate');
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    // Trigger both animations simultaneously
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
 
-  
-  
+    // Animate title letters - happens at same time as cards
+    const letterTimer = setTimeout(() => {
+      setLetterClass('text-animate-hover');
+    }, 4000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(letterTimer);
+    };
+  }, []);
+
+  const titleArray = "My Portfolio".split("");
 
   const projects = [
     {
@@ -17,7 +37,7 @@ const Portfolio = () => {
       title: 'Cogni_Quest',
       description: 'A comprehensive exam scheduling system with automated conflict detection',
       technologies: ['ReactJS', 'PostgreSQL', 'Spring Boot'],
-      image: '/path-to-exam-scheduler-image.jpg',
+      icon: '📚',
       gradient: 'linear-gradient(135deg, #4a1a1a 0%, #7a2c2c 100%)',
       link: '#'
     },
@@ -26,7 +46,7 @@ const Portfolio = () => {
       title: 'Empor',
       description: 'E-commerce platform with real-time inventory management',
       technologies: ['NextJS', 'Prisma', 'Spring Boot'],
-      image: '/path-to-empor-image.jpg',
+      icon: '🛒',
       gradient: 'linear-gradient(135deg, #e8e8e8 0%, #ffffff 100%)',
       link: '#'
     },
@@ -35,7 +55,7 @@ const Portfolio = () => {
       title: 'PL Match Predictor',
       description: 'Machine learning model to predict Premier League match outcomes',
       technologies: ['Python', 'Sci-kit Learn', 'Pandas'],
-      image: '/path-to-pl-predictor-image.jpg',
+      icon: '⚽',
       gradient: 'linear-gradient(135deg, #38003c 0%, #5a0058 100%)',
       link: '#'
     },
@@ -44,7 +64,7 @@ const Portfolio = () => {
       title: 'PremierZone',
       description: 'Fantasy football analytics and team management platform',
       technologies: ['ReactJS', 'PostgreSQL', 'Spring Boot'],
-      image: '/path-to-premierzone-image.jpg',
+      icon: '🏆',
       gradient: 'linear-gradient(135deg, #1e4d3c 0%, #2d7a5f 100%)',
       link: '#'
     },
@@ -53,7 +73,7 @@ const Portfolio = () => {
       title: 'Laravel Project',
       description: 'Full-stack web application built with Laravel framework',
       technologies: ['Laravel', 'MySQL', 'Vue.js'],
-      image: '/path-to-laravel-image.jpg',
+      icon: '🔧',
       gradient: 'linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%)',
       link: '#'
     },
@@ -62,7 +82,7 @@ const Portfolio = () => {
       title: 'Social Platform',
       description: 'Real-time social networking application',
       technologies: ['React', 'Node.js', 'MongoDB'],
-      image: '/path-to-social-image.jpg',
+      icon: '👥',
       gradient: 'linear-gradient(135deg, #001a33 0%, #003366 100%)',
       link: '#'
     },
@@ -71,7 +91,7 @@ const Portfolio = () => {
       title: 'Chat Application',
       description: 'Real-time messaging app with emoji support',
       technologies: ['React', 'Socket.io', 'Express'],
-      image: '/path-to-chat-image.jpg',
+      icon: '💬',
       gradient: 'linear-gradient(135deg, #b3d9ff 0%, #e6f2ff 100%)',
       link: '#'
     },
@@ -80,46 +100,71 @@ const Portfolio = () => {
       title: 'Game Project',
       description: 'Interactive browser-based game with leaderboard',
       technologies: ['JavaScript', 'Canvas API', 'Firebase'],
-      image: '/path-to-game-image.jpg',
+      icon: '🎮',
       gradient: 'linear-gradient(135deg, #2c1810 0%, #4a2818 100%)',
       link: '#'
     }
   ];
 
+  const handleProjectClick = (link) => {
+    if (link !== '#') {
+      window.open(link, '_blank');
+    }
+  };
+
   return (
     <div className="portfolio-container">
       <div className="portfolio-content">
-        <h1 className='portfolio-title'>My Portfolio</h1>
+        <h1 className="portfolio-title">
+          <AnimatedLetters
+            letterClass={letterClass}
+            strArray={titleArray}
+            idx={15}
+          />
+        </h1>
         
         <div className="projects-grid">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <div
               key={project.id}
-              className="project-card"
-              style={{ background: project.gradient }}
+              className={`project-card ${isVisible ? 'visible' : ''}`}
+              style={{ 
+                background: project.gradient,
+                animationDelay: `${index * 0.1}s`
+              }}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
+              onClick={() => handleProjectClick(project.link)}
             >
               <div className="project-image-container">
-                {/* Add your project image here */}
                 <div className="project-placeholder-icon">
-                  <span>🚀</span>
+                  <span>{project.icon}</span>
                 </div>
               </div>
               
               <div className="project-info">
                 <h3 className="project-title">{project.title}</h3>
                 <div className="project-technologies">
-                  {project.technologies.join(', ')}
+                  {project.technologies.map((tech, i) => (
+                    <span key={i} className="tech-tag">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              {hoveredProject === project.id && (
-                <div className="project-overlay">
-                  <p className="project-description">{project.description}</p>
-                  <button className="view-project-btn">View Project →</button>
-                </div>
-              )}
+              <div className={`project-overlay ${hoveredProject === project.id ? 'active' : ''}`}>
+                <p className="project-description">{project.description}</p>
+                <button 
+                  className="view-project-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleProjectClick(project.link);
+                  }}
+                >
+                  View Project →
+                </button>
+              </div>
             </div>
           ))}
         </div>

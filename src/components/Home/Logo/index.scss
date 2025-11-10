@@ -1,4 +1,4 @@
-// Modern Blue Logo Styles
+// Liquid Morphing Logo Styles - Enhanced Version
 
 .logo-container {
   z-index: 0;
@@ -9,134 +9,346 @@
   right: 8%;
   transform: translateY(-50%);
   margin: 0;
-  opacity: 0;
-  animation: splashFadeIn 1.5s ease-out 0.5s forwards;
+  perspective: 1000px;
+}
 
-  // Continuous floating animation after initial load
-  &.animate {
-    animation: splashFadeIn 1.5s ease-out 0.5s forwards,
-               floatGentle 6s ease-in-out 2s infinite;
-  }
+// Liquid particle droplets
+.liquid-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
 
-  .solid-logo {
+  .particle {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateZ(30deg) !important;
-    width: 85%;
-    height: auto;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.9) 0%, rgba(72, 202, 228, 0.5) 100%);
+    border-radius: 50%;
     opacity: 0;
-    filter: drop-shadow(0 10px 40px rgba(0, 180, 216, 0.4))
-            drop-shadow(0 0 80px rgba(72, 202, 228, 0.3));
-    z-index: 1;
-    transition: all 0.3s ease;
-
-    &.animate {
-      opacity: 1;
-      animation: logoGlow 3s ease-in-out infinite;
-    }
-
-    &:hover {
-      filter: drop-shadow(0 15px 50px rgba(0, 180, 216, 0.6))
-              drop-shadow(0 0 100px rgba(72, 202, 228, 0.5));
-      transform: translate(-50%, -50%) rotateZ(30deg) scale(1.02) !important;
-    }
+    filter: blur(8px);
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.8),
+                0 0 40px rgba(72, 202, 228, 0.5),
+                inset 0 0 15px rgba(255, 255, 255, 0.4);
   }
 
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateZ(30deg) !important;
-    width: 100%;
-    height: auto;
-    opacity: 0.8;
+  .particle-1 {
+    top: 10%;
+    left: 20%;
+    animation: liquidMerge 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s forwards;
+  }
 
-    .svg-path {
-      stroke: #00b4d8;
-      stroke-width: 3;
-      stroke-dasharray: 2500;
-      stroke-dashoffset: 2500;
-      animation: drawSVG 4s ease-in-out 1s forwards,
-                 pulseStroke 3s ease-in-out 5s infinite;
-      filter: drop-shadow(0 0 8px rgba(0, 180, 216, 0.6));
-    }
+  .particle-2 {
+    top: 30%;
+    right: 15%;
+    width: 50px;
+    height: 50px;
+    animation: liquidMerge 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.7s forwards;
+  }
+
+  .particle-3 {
+    bottom: 25%;
+    left: 15%;
+    width: 35px;
+    height: 35px;
+    animation: liquidMerge 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.6s forwards;
+  }
+
+  .particle-4 {
+    bottom: 15%;
+    right: 25%;
+    width: 45px;
+    height: 45px;
+    animation: liquidMerge 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.8s forwards;
+  }
+
+  .particle-5 {
+    top: 50%;
+    left: 10%;
+    width: 38px;
+    height: 38px;
+    animation: liquidMerge 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.9s forwards;
   }
 }
 
-// Initial splash fade in
-@keyframes splashFadeIn {
+// Main logo image with enhanced effects
+.solid-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(30deg) scale(0);
+  width: 85%;
+  height: auto;
+  opacity: 0;
+  z-index: 2;
+  filter: drop-shadow(0 10px 40px rgba(0, 180, 216, 0.5))
+          drop-shadow(0 0 80px rgba(72, 202, 228, 0.4))
+          drop-shadow(0 5px 20px rgba(0, 180, 216, 0.6));
+  transition: all 0.4s ease;
+  will-change: transform, filter;
+
+  &.animate {
+    animation: liquidMaterialize 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s forwards,
+               liquidWobble 5s ease-in-out 3s infinite,
+               floatGentle 7s ease-in-out 3s infinite,
+               breatheGlow 4s ease-in-out 3.5s infinite;
+  }
+
+  &:hover {
+    filter: drop-shadow(0 15px 60px rgba(0, 180, 216, 0.7))
+            drop-shadow(0 0 140px rgba(72, 202, 228, 0.7))
+            drop-shadow(0 5px 30px rgba(0, 180, 216, 0.8));
+    transform: translate(-50%, -50%) rotateZ(30deg) scale(1.05) !important;
+    animation: liquidWobbleHover 0.8s ease-in-out infinite,
+               floatGentle 7s ease-in-out infinite,
+               breatheGlow 2s ease-in-out infinite;
+  }
+}
+
+// Ambient glow rings - enhanced
+.glow-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(0, 180, 216, 0.4);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 20px rgba(0, 180, 216, 0.3),
+              inset 0 0 20px rgba(72, 202, 228, 0.2);
+  
+  &.ring-1 {
+    width: 120%;
+    height: 120%;
+    animation: expandRing 2.5s ease-out 2s forwards,
+               pulseRing 5s ease-in-out 4.5s infinite;
+  }
+
+  &.ring-2 {
+    width: 140%;
+    height: 140%;
+    animation: expandRing 2.5s ease-out 2.3s forwards,
+               pulseRing 5s ease-in-out 4.8s infinite;
+  }
+
+  &.ring-3 {
+    width: 160%;
+    height: 160%;
+    animation: expandRing 2.5s ease-out 2.6s forwards,
+               pulseRing 5s ease-in-out 5.1s infinite;
+  }
+}
+
+// Dynamic light beams
+.light-beam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 180, 216, 0.6) 50%, 
+    transparent 100%);
+  transform-origin: center;
+  opacity: 0;
+  filter: blur(2px);
+  pointer-events: none;
+
+  &.beam-1 {
+    transform: translate(-50%, -50%) rotate(45deg);
+    animation: beamPulse 3s ease-in-out 2.5s infinite;
+  }
+
+  &.beam-2 {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: beamPulse 3s ease-in-out 3s infinite;
+  }
+
+  &.beam-3 {
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: beamPulse 3s ease-in-out 3.5s infinite;
+  }
+}
+
+// ======================
+// KEYFRAME ANIMATIONS
+// ======================
+
+// Liquid particles merging into logo
+@keyframes liquidMerge {
   0% {
     opacity: 0;
-    transform: translateY(-50%) scale(0.7) rotate(-10deg);
-    filter: blur(10px);
+    transform: scale(0) translateY(-100px);
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+    transform: scale(1.2) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translate(0, 0);
+  }
+}
+
+// Logo materialization with liquid effect
+@keyframes liquidMaterialize {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotateZ(30deg) scale(0);
+    filter: blur(25px) 
+            drop-shadow(0 0 0px rgba(0, 180, 216, 0));
+  }
+  30% {
+    opacity: 0.5;
+    filter: blur(12px) 
+            drop-shadow(0 10px 35px rgba(0, 180, 216, 0.6))
+            drop-shadow(0 0 60px rgba(72, 202, 228, 0.4));
   }
   60% {
-    transform: translateY(-50%) scale(1.05) rotate(2deg);
+    transform: translate(-50%, -50%) rotateZ(30deg) scale(1.1);
+    filter: blur(3px) 
+            drop-shadow(0 15px 45px rgba(0, 180, 216, 0.7))
+            drop-shadow(0 0 90px rgba(72, 202, 228, 0.5));
   }
   100% {
     opacity: 1;
-    transform: translateY(-50%) scale(1) rotate(0deg);
-    filter: blur(0px);
+    transform: translate(-50%, -50%) rotateZ(30deg) scale(1);
+    filter: blur(0px) 
+            drop-shadow(0 10px 40px rgba(0, 180, 216, 0.5))
+            drop-shadow(0 0 80px rgba(72, 202, 228, 0.4))
+            drop-shadow(0 5px 20px rgba(0, 180, 216, 0.6));
   }
 }
 
-// Gentle floating animation
-@keyframes floatGentle {
+// Continuous liquid wobble with brightness changes
+@keyframes liquidWobble {
   0%, 100% {
-    transform: translateY(-50%) translateX(0) rotate(0deg);
+    filter: drop-shadow(0 10px 40px rgba(0, 180, 216, 0.5))
+            drop-shadow(0 0 80px rgba(72, 202, 228, 0.4))
+            drop-shadow(0 5px 20px rgba(0, 180, 216, 0.6));
+  }
+  33% {
+    filter: drop-shadow(0 12px 48px rgba(0, 180, 216, 0.55))
+            drop-shadow(0 0 95px rgba(72, 202, 228, 0.45))
+            drop-shadow(0 5px 25px rgba(0, 180, 216, 0.65));
+  }
+  66% {
+    filter: drop-shadow(0 15px 55px rgba(0, 180, 216, 0.6))
+            drop-shadow(0 0 110px rgba(72, 202, 228, 0.5))
+            drop-shadow(0 5px 30px rgba(0, 180, 216, 0.7));
+  }
+}
+
+// Breathing glow effect
+@keyframes breatheGlow {
+  0%, 100% {
+    filter: drop-shadow(0 10px 40px rgba(0, 180, 216, 0.5))
+            drop-shadow(0 0 80px rgba(72, 202, 228, 0.4))
+            drop-shadow(0 5px 20px rgba(0, 180, 216, 0.6))
+            brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 15px 55px rgba(0, 180, 216, 0.6))
+            drop-shadow(0 0 110px rgba(72, 202, 228, 0.5))
+            drop-shadow(0 5px 30px rgba(0, 180, 216, 0.7))
+            brightness(1.1);
+  }
+}
+
+// Enhanced wobble on hover
+@keyframes liquidWobbleHover {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotateZ(30deg) scale(1.05) skewX(0deg);
   }
   25% {
-    transform: translateY(-52%) translateX(-8px) rotate(-1deg);
+    transform: translate(-50%, -50%) rotateZ(30.3deg) scale(1.06) skewX(0.5deg);
   }
   50% {
-    transform: translateY(-48%) translateX(0) rotate(1deg);
+    transform: translate(-50%, -50%) rotateZ(29.7deg) scale(1.05) skewX(0deg);
   }
   75% {
-    transform: translateY(-52%) translateX(8px) rotate(-0.5deg);
+    transform: translate(-50%, -50%) rotateZ(30.3deg) scale(1.06) skewX(-0.5deg);
   }
 }
 
-// Glow pulsing effect
-@keyframes logoGlow {
+// Gentle floating motion
+@keyframes floatGentle {
   0%, 100% {
-    filter: drop-shadow(0 10px 40px rgba(0, 180, 216, 0.4))
-            drop-shadow(0 0 80px rgba(72, 202, 228, 0.3));
+    transform: translate(-50%, -50%) rotateZ(30deg) translateY(0) translateX(0);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotateZ(29.3deg) translateY(-10px) translateX(-6px);
   }
   50% {
-    filter: drop-shadow(0 15px 50px rgba(0, 180, 216, 0.6))
-            drop-shadow(0 0 100px rgba(72, 202, 228, 0.5));
+    transform: translate(-50%, -50%) rotateZ(30deg) translateY(-5px) translateX(0);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotateZ(30.7deg) translateY(-10px) translateX(6px);
   }
 }
 
-// SVG stroke drawing animation
-@keyframes drawSVG {
+// Expanding glow rings
+@keyframes expandRing {
   0% {
-    stroke-dashoffset: 2500;
     opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    border-color: rgba(0, 180, 216, 0.6);
   }
-  20% {
-    opacity: 0.8;
+  40% {
+    opacity: 0.7;
+    border-color: rgba(0, 180, 216, 0.5);
   }
   100% {
-    stroke-dashoffset: 0;
-    opacity: 0.8;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    border-color: rgba(0, 180, 216, 0.2);
   }
 }
 
-// Subtle pulse for SVG stroke
-@keyframes pulseStroke {
+// Pulsing ring effect
+@keyframes pulseRing {
   0%, 100% {
-    stroke-width: 3;
-    opacity: 0.8;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    border-width: 2px;
   }
   50% {
-    stroke-width: 4;
-    opacity: 1;
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.08);
+    border-width: 3px;
   }
 }
 
-// Responsive Design
+// Light beam pulsing
+@keyframes beamPulse {
+  0%, 100% {
+    opacity: 0;
+    width: 200%;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+    width: 250%;
+  }
+  70% {
+    opacity: 0.3;
+  }
+}
+
+// ======================
+// RESPONSIVE DESIGN
+// ======================
+
 @media screen and (max-width: 1200px) {
   .logo-container {
     width: 380px;
@@ -154,15 +366,23 @@
     right: auto;
     transform: none;
     margin: 40px auto 0;
-    
-    &.animate {
-      animation: splashFadeIn 1.5s ease-out 0.5s forwards,
-                 floatGentle 6s ease-in-out 2s infinite;
-    }
 
     .solid-logo {
-      width: 90%;
+      &.animate {
+        animation: liquidMaterialize 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s forwards,
+                   liquidWobble 5s ease-in-out 3s infinite,
+                   breatheGlow 4s ease-in-out 3.5s infinite;
+      }
     }
+  }
+
+  .liquid-particles .particle {
+    width: 30px;
+    height: 30px;
+  }
+
+  .light-beam {
+    display: none;
   }
 }
 
@@ -171,5 +391,14 @@
     width: 220px;
     height: 220px;
     margin: 20px auto 0;
+  }
+
+  .liquid-particles .particle {
+    width: 25px;
+    height: 25px;
+  }
+
+  .glow-ring {
+    display: none;
   }
 }
