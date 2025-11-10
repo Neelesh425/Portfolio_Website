@@ -4,8 +4,9 @@
     background: linear-gradient(180deg, #001219 0%, #001f3f 100%);
     width: 70px;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
+    left: 0;
     z-index: 3;
     min-height: 500px;
     box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);

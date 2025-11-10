@@ -9,19 +9,32 @@
   overflow-y: auto;
   position: relative;
   
-  // Animated background particles
+  // Light blue header gradient overlay at top
   &::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(0, 180, 216, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(72, 202, 228, 0.1) 0%, transparent 50%);
+    right: 0;
+    height: 300px;
+    background: linear-gradient(180deg, rgba(0, 180, 216, 0.2) 0%, transparent 100%);
     pointer-events: none;
     z-index: 0;
-    animation: subtleShift 20s ease-in-out infinite;
+  }
+
+  // Animated background dots
+  &::after {
+    content: '';
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveBackground 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
   }
   
   @media (max-width: 1024px) {
@@ -35,14 +48,12 @@
   }
 }
 
-@keyframes subtleShift {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
+@keyframes moveBackground {
+  0% {
+    transform: translate(0, 0);
   }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1);
+  100% {
+    transform: translate(50px, 50px);
   }
 }
 
@@ -62,8 +73,10 @@
   letter-spacing: 3px;
   position: relative;
   display: inline-block;
-  text-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
   font-family: 'Coolvetica';
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   
   &::before {
     content: '<h1>';
@@ -72,7 +85,7 @@
     position: absolute;
     margin-top: -40px;
     left: -10px;
-    opacity: 1;
+    opacity: 0.6;
     font-family: 'La Belle Aurore', cursive;
   }
 
@@ -81,11 +94,10 @@
     color: #00b4d8;
     font-size: 18px;
     position: absolute;
-    margin-top: 10px;
-    margin-left: 20px;
-    opacity: 1;
+    bottom: -30px;
+    left: 0;
+    opacity: 0.6;
     font-family: 'La Belle Aurore', cursive;
-
   }
   
   @media (max-width: 768px) {
@@ -125,19 +137,20 @@
   height: 380px;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   
-  // Initial state (hidden below)
+  // Initial state - hidden below viewport
   opacity: 0;
-  transform: translateY(80px) scale(0.9);
+  transform: translateY(100px);
+  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
   
-  // Animated state (visible)
+  // Animated state - rises up when visible
   &.visible {
-    animation: riseUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 1;
+    transform: translateY(0);
   }
   
   &:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-12px) scale(1.02) !important;
     box-shadow: 0 25px 50px rgba(0, 180, 216, 0.3),
                 0 0 40px rgba(72, 202, 228, 0.2);
     
@@ -160,21 +173,6 @@
   
   @media (max-width: 768px) {
     height: 340px;
-  }
-}
-
-// Rise-up animation keyframes
-@keyframes riseUp {
-  0% {
-    opacity: 0;
-    transform: translateY(80px) scale(0.9);
-  }
-  60% {
-    transform: translateY(-10px) scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
   }
 }
 
@@ -250,7 +248,7 @@
 .project-title {
   font-size: 1.6rem;
   font-weight: 600;
-  color: goldenrod;
+  color: #ffffff;
   margin-bottom: 12px;
   letter-spacing: 0.5px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);

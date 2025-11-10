@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.scss';
 import AnimatedLetters from '../AnimatedLetters';
+import PageLoader from '../PageLoader'; 
 
 // Import your project images here
 // import cogniQuestImg from '../../assets/images/projects/cogni-quest.jpg';
@@ -13,21 +14,21 @@ const Portfolio = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger both animations simultaneously
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
+  // Wait for PageLoader to finish (2000ms) + small buffer
+  const timer = setTimeout(() => {
+    setIsVisible(true);
+  }, 2200); // Changed from 100ms to 2200ms
 
-    // Animate title letters - happens at same time as cards
-    const letterTimer = setTimeout(() => {
-      setLetterClass('text-animate-hover');
-    }, 4000);
+  // Animate title letters after cards start
+  const letterTimer = setTimeout(() => {
+    setLetterClass('text-animate-hover');
+  }, 6200); // Changed from 4000ms to 6200ms (2200 + 4000)
 
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(letterTimer);
-    };
-  }, []);
+  return () => {
+    clearTimeout(timer);
+    clearTimeout(letterTimer);
+  };
+}, []);
 
   const titleArray = "My Portfolio".split("");
 
@@ -113,6 +114,7 @@ const Portfolio = () => {
   };
 
   return (
+   <PageLoader duration={2000}>
     <div className="portfolio-container">
       <div className="portfolio-content">
         <h1 className="portfolio-title">
@@ -130,7 +132,7 @@ const Portfolio = () => {
               className={`project-card ${isVisible ? 'visible' : ''}`}
               style={{ 
                 background: project.gradient,
-                animationDelay: `${index * 0.1}s`
+                transitionDelay: `${index * 0.2}s`
               }}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
@@ -170,6 +172,7 @@ const Portfolio = () => {
         </div>
       </div>
     </div>
+    </PageLoader>
   );
 };
 

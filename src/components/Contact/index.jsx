@@ -6,20 +6,21 @@ import emailjs from "@emailjs/browser"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import PageLoader from '../PageLoader'; 
 
 const Contact = () => {
     const [letterClass, setLetterClass] = useState('text-animate')
     const refForm = useRef()
 
     useEffect(() => {
-        const timerId = setTimeout(() => {
-          setLetterClass('text-animate-hover');
-        }, 3000);
-      
-        return () => {
-          clearTimeout(timerId);
-        };
-      }, []);
+    const timerId = setTimeout(() => {
+      setLetterClass('text-animate-hover');
+    }, 5000); // Changed from 3000ms to 5000ms (2200ms + 2800ms buffer for smooth transition)
+  
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, []);
 
       const sendEmail = (e) => {
         e.preventDefault() 
@@ -44,6 +45,7 @@ const Contact = () => {
       }
 
     return(
+        <PageLoader duration={2000}>
         <>
             <div className="container contact-page">
                 <div className="contact-container">
@@ -84,8 +86,9 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-            <Loader type="pacman" />
+            
         </>
+        </PageLoader>
     )
 }
 

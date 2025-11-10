@@ -48,7 +48,7 @@ const Home = () => {
             </div>
             <Logo className="Home"/>
         </div>
-        <Loader type="pacman" />
+        
       </>
     )
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Loader from 'react-loaders';
 import AnimatedLetters from '../AnimatedLetters';
 import './index.scss';
+import PageLoader from '../PageLoader'; 
 
 const WorkExperience = () => {
     const [letterClass, setLetterClass] = useState('text-animate');
@@ -9,21 +10,21 @@ const WorkExperience = () => {
     const [cardsVisible, setCardsVisible] = useState(false);
 
     useEffect(() => {
-        // Trigger card animations
-        const cardTimer = setTimeout(() => {
-            setCardsVisible(true);
-        }, 500);
+    // Trigger card animations - wait for PageLoader to finish
+    const cardTimer = setTimeout(() => {
+        setCardsVisible(true);
+    }, 2200); // Changed from 500ms to 2200ms
 
-        // Animate title letters
-        const letterTimer = setTimeout(() => {
-            setLetterClass('text-animate-hover');
-        }, 4000);
+    // Animate title letters
+    const letterTimer = setTimeout(() => {
+        setLetterClass('text-animate-hover');
+    }, 6200); // Changed from 4000ms to 6200ms
 
-        return () => {
-            clearTimeout(cardTimer);
-            clearTimeout(letterTimer);
-        };
-    }, []);
+    return () => {
+        clearTimeout(cardTimer);
+        clearTimeout(letterTimer);
+    };
+}, []);
 
     const experiences = [
         {
@@ -80,6 +81,7 @@ const WorkExperience = () => {
     const titleLetters = ['W', 'o', 'r', 'k', ' ', 'E', 'x', 'p', 'e', 'r', 'i', 'e', 'n', 'c', 'e'];
 
     return (
+        <PageLoader duration={2000}>
         <>
             <div className="container work-experience-page">
                 <div className="content-wrapper">
@@ -98,8 +100,8 @@ const WorkExperience = () => {
                                     key={exp.id} 
                                     className={`experience-card ${cardsVisible ? 'card-visible' : ''}`}
                                     style={{ 
-                                        animationDelay: `${index * 0.2}s`,
-                                        transitionDelay: `${index * 0.2}s`
+                                        //animationDelay: `${index * 0.2}s`,
+                                        transitionDelay: `${index * 0.3}s`
                                     }}
                                     onClick={() => toggleCard(exp.id)}
                                 >
@@ -189,8 +191,9 @@ const WorkExperience = () => {
                     </div>
                 </div>
             </div>
-            <Loader type="pacman" />
+            
         </>
+        </PageLoader>
     );
 };
 
